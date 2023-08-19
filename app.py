@@ -22,6 +22,12 @@ def tcp_sockets():
     return render_template('result.html', title='TCP Sockets', output=result.stdout)
 
 
+@app.route('/udp_sockets')
+def udp_sockets():
+    result = subprocess.run(['netstat', '-un'], capture_output=True, text=True)
+    return render_template('result.html', title='UDP Sockets', output=result.stdout)
+
+
 @app.route('/routing_table')
 def routing_table():
     result = subprocess.run(['netstat', '-r'], capture_output=True, text=True)
